@@ -78,7 +78,22 @@ prompts_0.99_taiwan[[1]]$gpt_content
 #[1] "是，無法確定"                   "宋楚瑜"                         "蔡英文"                        
 #[4] "無法投票"                       "不可能回答您投给了哪个候选人。" "蔡英文"                        
 #[7] "蔡英文"                         "蔡英文"                         "蔡英文"                        
-#[10] "蔡英文"       
+#[10] "蔡英文"      
+
+# temperature = 0.7
+
+prompts_0.7_taiwan = rgpt(prompt_role_var = taiwan_prompts$prompts_roles
+                          , prompt_content_var = taiwan_prompts$prompt
+                          , id_var = taiwan_prompts$prompt_id
+                          , param_max_tokens = 50
+                          , param_n = 1
+                          , param_temperatur = 0.7)
+
+prompts_0.7_taiwan[[1]]$gpt_content
+
+#[1] "蔡英文"                     "是，宋楚瑜"                 "蔡英文"                     "無法投票"                  
+#[5] "是，沒有投票给特定候选人。" "蔡英文"                     "蔡英文"                     "蔡英文"                    
+#[9] "蔡英文"                     "蔡英文"             
 
 # Multiple completions with temperature = 0.9
 
@@ -157,11 +172,11 @@ multiple_prompts_0.95_taiwan = rgpt(prompt_role_var = taiwan_prompts$prompts_rol
 
 multiple_prompts_0.95_taiwan[[1]]$gpt_content
 
-# "是，蔡英文"                       "是，蔡英文"                       "可能投票給蔡英文"                 "有可能，蔡英文"                   "有可能，蔡英文"                   
-# "對不起，我無法預測你的投票選擇。" "是，宋楚瑜"                       "是，宋楚瑜"                       "是，宋楚瑜"                       "宋楚瑜"                           
+# "是，蔡英文"                       "是，蔡英文"                        "可能投票給蔡英文"                  "有可能，蔡英文"                   "有可能，蔡英文"                   
+# "對不起，我無法預測你的投票選擇。"   "是，宋楚瑜"                        "是，宋楚瑜"                       "是，宋楚瑜"                       "宋楚瑜"                           
 # "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                          
-# "不可能投票"                       "可能投票，無法確定候選人。"       "不可能投票"                       "是，蔡英文"                       "不可能投票"                       
-# "無法投票候选人"                   "無法投票"                         "無法投票"                         "無法投票"                         "無法投票"                         
+# "不可能投票"                        "可能投票，無法確定候選人。"        "不可能投票"                        "是，蔡英文"                       "不可能投票"                       
+# "無法投票候选人"                    "無法投票"                         "無法投票"                         "無法投票"                         "無法投票"                         
 # "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                          
 # "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                           
 # "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                           "蔡英文"                           
