@@ -1,3 +1,5 @@
+# data in Chinese (Taiwan)
+
 complete_dataT <- complete_data
 
 complete_dataT$gender[complete_dataT$gender == "1"] <- "男"
