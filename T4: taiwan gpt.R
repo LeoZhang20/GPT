@@ -23,6 +23,6 @@ mainland_prompts <- data.frame(
 gpt_mainland = rgpt(prompt_role_var = mainland_prompts$prompts_roles
                     , prompt_content_var = mainland_prompts$prompt
                     , id_var = mainland_prompts$prompt_id
-                    , param_max_tokens = 50
+                    , param_max_tokens = 30
                     , param_n = 5
                     , param_temperature = 0.99)
