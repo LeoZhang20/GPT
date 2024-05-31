@@ -1,3 +1,5 @@
+# Translate the numbers in the data into words
+
 complete_dataE <- complete_data
 
 complete_dataE$gender[complete_dataE$gender == "1"] <- "male."
