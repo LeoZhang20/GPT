@@ -1,3 +1,5 @@
+# robustness check
+
 clean_data <- data
 
 clean_data$gender[clean_data$gender == "1"] <- "male."
@@ -112,6 +114,8 @@ party = ifelse(is.na(clean_data$party) == FALSE,  paste("Among the parties in Ta
 employment = ifelse(is.na(clean_data$employment) == FALSE,  paste("I am", clean_data$employment), "")
 social = ifelse(is.na(clean_data$social) == FALSE,  paste("My social status is", clean_data$social), "")
 
+# prompts
+
 Prompt_RB = paste(gender,age,residence,father,mother,education,religion,democracy,identification,relationship,party,employment,social,
                   "Did I vote in the 2020 Taiwanese presidential election and if so, which candidate did I vote for? I [INSERT]"
                   )
@@ -119,13 +123,9 @@ Prompt_RB = paste(gender,age,residence,father,mother,education,religion,democrac
 robu_list <- list()
 result_robu <- c(robu_list, Prompt_RB)
 
+# clean version
+
 trimmed_robu <- trimws(result_robu)
 cleaned_robu <- gsub("\\s+", " ", trimmed_robu)
 robu_final <- list()
 result_robu_final <- c(robu_final, cleaned_robu)
-
-result_robu_final[[1]]
-result_robu_final[[3]]
-result_robu_final[[39]]
-result_robu_final[[40]]
-result_robu_final[[41]]
