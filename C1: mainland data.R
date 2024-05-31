@@ -1,7 +1,9 @@
+# package
+
+## rgpt3
+
 knitr::opts_chunk$set(echo = TRUE)
-
 library(devtools)
-
 devtools::install_github("ben-aaron188/rgpt3")
 library(rgpt3)
 
@@ -11,6 +13,8 @@ library(forcats)
 library(stringr)
 library(mice)
 library(checkmate)
+
+# data in Chinese (mainland)
 
 complete_dataM <- complete_data
 
