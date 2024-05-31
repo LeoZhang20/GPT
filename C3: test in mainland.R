@@ -1,6 +1,6 @@
 # gpt example 
 
-rgpt_authenticate("H:/Bachelorarbeit/access_key.txt")
+rgpt_authenticate("H:/Bachelorarbeit/access_key1.txt")
 
 mainland_prompts_df <- data.frame(
   prompts_roles = rep("user", 10), 
@@ -49,6 +49,49 @@ prompts_1_mainland[[1]]$gpt_content
 
 #[1] "有可能投票，蔡英文。" "宋楚瑜"               "蔡英文"               "蔡英文"               "蔡英文"              
 #[6] "蔡英文"               "蔡英文"               "蔡英文"               "蔡英文"               "蔡英文"    
+
+# temperature = 0.95
+
+prompts_0.95_mainland = rgpt(prompt_role_var = mainland_prompts_df$prompts_roles
+                          , prompt_content_var = mainland_prompts_df$prompt
+                          , id_var = mainland_prompts_df$prompt_id
+                          , param_max_tokens = 50
+                          , param_n = 1
+                          , param_temperatur = 0.95)
+
+prompts_0.95_mainland[[1]]$gpt_content
+
+# [1] "蔡英文"             "可能，宋楚瑜"       "蔡英文"             "有可能，蔡英文"     "蔡英文"             "可能投票给蔡英文。"
+# [7] "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"   
+
+# temperature = 0.99
+
+prompts_0.99_mainland = rgpt(prompt_role_var = mainland_prompts_df$prompts_roles
+                             , prompt_content_var = mainland_prompts_df$prompt
+                             , id_var = mainland_prompts_df$prompt_id
+                             , param_max_tokens = 50
+                             , param_n = 1
+                             , param_temperatur = 0.99)
+
+prompts_0.99_mainland[[1]]$gpt_content
+
+# [1] "有可能，蔡英文。" "韩国瑜"           "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"          
+# [7] "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"  
+
+# temperature = 0.7
+
+prompts_0.7_mainland = rgpt(prompt_role_var = mainland_prompts_df$prompts_roles
+                            , prompt_content_var = mainland_prompts_df$prompt
+                            , id_var = mainland_prompts_df$prompt_id
+                            , param_max_tokens = 50
+                            , param_n = 1
+                            , param_temperatur = 0.7)
+
+prompts_0.7_mainland[[1]]$gpt_content
+
+#[1] "蔡英文"                       "宋楚瑜"                       "蔡英文"                       "可能投票，但无法确定投给谁。"
+#[5] "蔡英文"                       "蔡英文"                       "蔡英文"                       "蔡英文"                      
+#[9] "蔡英文"                       "蔡英文"      
 
 # Multiple completions with temperature = 0.9
 
@@ -115,3 +158,25 @@ multiple_prompts_1_mainland[[1]]$gpt_content
 # "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"          
 # "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"          
 # "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"           "蔡英文"    
+
+# Multiple completions with temperature = 0.99
+
+multiple_prompts_0.99_mainland = rgpt(prompt_role_var = mainland_prompts_df$prompts_roles
+                                     , prompt_content_var = mainland_prompts_df$prompt
+                                     , id_var = mainland_prompts_df$prompt_id
+                                     , param_max_tokens = 50
+                                     , param_n = 5
+                                     , param_temperatur = 0.99)
+
+multiple_prompts_0.99_mainland[[1]]$gpt_content
+
+# "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             
+# "宋楚瑜"             "韩国瑜"             "韩国瑜"             "蔡英文"             "宋楚瑜"             
+# "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             
+# "蔡英文"             "蔡英文"             "可能投给韩国瑜。"   "蔡英文"             "可能投票，蔡英文"   
+# "没有投票权"         "蔡英文"             "韩国瑜"             "韩国瑜"             "蔡英文"             
+# "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"            
+# "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             
+# "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             
+# "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             "蔡英文"             
+# "蔡英文"             "可能投票给蔡英文。" "蔡英文"             "蔡英文"             "蔡英文"  
