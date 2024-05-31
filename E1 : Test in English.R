@@ -21,7 +21,7 @@ complete_dataE$election[[1409]] # "Tsai Ing-wen"
 
 # example
 
-rgpt_authenticate("H:/Bachelorarbeit/access_key.txt")
+rgpt_authenticate("H:/Bachelorarbeit/access_key1.txt")
 
 zehn_prompts_Example <- data.frame(
   prompts_roles = rep("user", 10), 
@@ -119,6 +119,22 @@ temperature_0.95_zehn_prompts[[1]]$gpt_content
 #[7] "Highly likely, Tsai Ing-wen"                  "Highly likely, Tsai Ing-wen"                 
 #[9] "Likely voted, Tsai Ing-wen"                   "Very likely, Tsai Ing-wen"   
 
+## 0.99
+
+temperature_0.99_zehn_prompts = rgpt(prompt_role_var = zehn_prompts_Example$prompts_roles
+                                     , prompt_content_var = zehn_prompts_Example$prompt
+                                     , id_var = zehn_prompts_Example$prompt_id
+                                     , param_max_tokens = 50
+                                     , param_n = 1
+                                     , param_temperature = 0.99)
+
+temperature_0.99_zehn_prompts[[1]]$gpt_content
+
+# [1] "Likely voted, Tsai Ing-wen"           "I likely voted, James Soong."         "Likely voted, Tsai Ing-wen"          
+# [4] "Unlikely to vote; if voted, unclear." "I likely voted, Tsai Ing-wen."        "Likely voted, Tsai Ing-wen"          
+# [7] "Highly likely, Tsai Ing-wen"          "Highly likely, Tsai Ing-wen"          "I likely voted, Tsai Ing-wen."       
+# [10] "Highly likely, Tsai Ing-wen"
+
 
 # Multiple completions
 
@@ -206,4 +222,26 @@ completion_0.95_zehn_prompts[[1]]$gpt_content
 # "I likely voted, Tsai Ing-wen."                       "Very likely, Tsai Ing-wen"                           "Likely voted, Tsai Ing-wen"                          "Highly likely, Tsai Ing-wen"                         "I likely voted, Tsai Ing-wen."                       
 # "Very likely, Tsai Ing-wen"                           "Very likely, Tsai Ing-wen"                           "Highly likely, Tsai Ing-wen"                         "Very likely, Tsai Ing-wen"                           "Very likely, Tsai Ing-wen"                          
 # "I likely voted for Tsai Ing-wen."                    "Very likely, Tsai Ing-wen"                           "Likely voted, Tsai Ing-wen"                          "Likely voted, Tsai Ing-wen"                          "I likely voted; Tsai Ing-wen."                       
-# "Very likely, Tsai Ing-wen"                           "Highly likely, Tsai Ing-wen"                         "Very likely, Tsai Ing-wen"                           "Highly likely, Tsai Ing-wen"                         "Very likely, Tsai Ing-wen"                          
+# "Very likely, Tsai Ing-wen"                           "Highly likely, Tsai Ing-wen"                         "Very likely, Tsai Ing-wen"                           "Highly likely, Tsai Ing-wen"                         "Very likely, Tsai Ing-wen"          
+
+## with temperature 0.99
+
+completion_0.99_zehn_prompts = rgpt(prompt_role_var = zehn_prompts_Example$prompts_roles
+                                    , prompt_content_var = zehn_prompts_Example$prompt
+                                    , id_var = zehn_prompts_Example$prompt_id
+                                    , param_max_tokens = 50
+                                    , param_n = 5
+                                    , param_temperature = 0.99)
+
+completion_0.99_zehn_prompts[[1]]$gpt_content
+
+# "Likely to vote, Tsai Ing-wen"                    "Likely voted, Tsai Ing-wen"                      "Likely voted, Tsai Ing-wen"                      "Likely voted; Tsai Ing-wen"                      "Likely voted, Tsai Ing-wen"                      
+# "Likely voted, James Soong"                       "Likely voted, James Soong"                       "Likely voted, James Soong"                       "Highly likely, James Soong"                      "Highly likely, James Soong"                     
+# "I likely voted, Tsai Ing-wen."                   "Likely voted; Tsai Ing-wen"                      "Likely voted, Tsai Ing-wen"                      "Highly likely, Tsai Ing-wen"                     "I likely voted, Tsai Ing-wen."                   
+# "Unlikely, None"                                  "I likely voted, Tsai Ing-wen."                   "Unlikely, Tsai Ing-wen"                          "Unlikely, None"                                  "I likely voted, leaning towards Tsai Ing-wen."  
+# "Highly likely, Tsai Ing-wen"                     "I likely voted, Tsai Ing-wen."                   "I likely voted, Tsai Ing-wen"                    "I likely voted, Tsai Ing-wen."                   "Likely didn't vote, but if voted, Tsai Ing-wen." 
+# "Likely voted, Tsai Ing-wen"                      "Likely, Tsai Ing-wen"                            "I likely voted, Tsai Ing-wen."                   "I likely voted, Tsai Ing-wen."                   "Very likely, Tsai Ing-wen"                      
+# "Highly likely, Tsai Ing-wen"                     "Highly likely, Tsai Ing-wen"                     "Very likely, Tsai Ing-wen"                       "Highly likely, Tsai Ing-wen"                     "Highly likely, Tsai Ing-wen"                     
+# "Highly likely, Tsai Ing-wen"                     "Very likely voted, Tsai Ing-wen"                 "Very likely, Tsai Ing-wen"                       "Very likely, Tsai Ing-wen"                       "Highly likely, Tsai Ing-wen"                    
+# "likely voted, Tsai Ing-wen"                      "likely voted, Tsai Ing-wen."                     "Likely voted, Tsai Ing-wen"                      "Likely voted, Tsai Ing-wen"                      "Likely voted, Tsai Ing-wen."                     
+# "Likely voted, Tsai Ing-wen"                      "Highly likely, Tsai Ing-wen"                     "Likely voted, Tsai Ing-wen"                      "Very likely, Tsai Ing-wen"                       "Highly likely, Tsai Ing-wen"       
