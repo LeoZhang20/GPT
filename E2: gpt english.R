@@ -1,17 +1,4 @@
-knitr::opts_chunk$set(echo = TRUE)
-
-install.packages("devtools")
-library(devtools)
-
-devtools::install_github("ben-aaron188/rgpt3")
-library(rgpt3)
-
-library(haven)
-library(dplyr)
-library(forcats)
-library(stringr)
-library(mice)
-library(checkmate)
+# gpt in English
 
 rgpt_authenticate("H:/Bachelorarbeit/access_key1.txt")
 
