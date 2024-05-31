@@ -1,11 +1,3 @@
-library(rgpt3)
-library(haven)
-library(dplyr)
-library(forcats)
-library(stringr)
-library(mice)
-library(checkmate)
-
 # original result
 
 complete_dataE$election[[1]] # "did not vote"
