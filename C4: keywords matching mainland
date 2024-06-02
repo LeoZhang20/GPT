@@ -1,7 +1,7 @@
 # Keywords Matching
 completionM <- data.frame(
-  nM = multiple_prompts_0.99_mainland[[1]]$n,
-  gpt_contentM = multiple_prompts_0.99_mainland[[1]]$gpt_content
+  nM = gpt_mainland[[1]]$n,
+  gpt_contentM = gpt_mainland[[1]]$gpt_content
 )
 
 # Create keywords
