@@ -1,6 +1,6 @@
 completionT <- data.frame(
-  nT = multiple_prompts_0.9_taiwan[[1]]$n,
-  gpt_contentT = multiple_prompts_0.9_taiwan[[1]]$gpt_content
+  nT = gpt_taiwan[[1]]$n,
+  gpt_contentT = gpt_taiwan[[1]]$gpt_content
 )
 
 # Create keywords
