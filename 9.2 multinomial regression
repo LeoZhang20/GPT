@@ -1,0 +1,226 @@
+library(nnet)
+library(openxlsx)
+
+# TSCS
+
+## Soong
+
+GPT_EN$election1 <- ifelse(GPT_EN$election == 1, 1, 0)
+multi_EN_election_1 <- multinom(election1 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_EN)
+coefficients_multi_EN_election_1 <- summary(multi_EN_election_1)$coefficients
+variable_names <- multi_EN_election_1[["coefnames"]]
+
+summary_multi_EN_election_1 <- summary(multi_EN_election_1)
+z_values_EN_election_1 <- summary_multi_EN_election_1$coefficients / summary_multi_EN_election_1$standard.errors
+p_values_EN_election_1 <- 2 * (1 - pnorm(abs(z_values_EN_election_1)))
+print(p_values_EN_election_1)
+
+## Han
+
+GPT_EN$election2 <- ifelse(GPT_EN$election == 2, 1, 0)
+multi_EN_election_2 <- multinom(election2 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_EN)
+coefficients_multi_EN_election_2 <- summary(multi_EN_election_2)$coefficients
+
+summary_multi_EN_election_2 <- summary(multi_EN_election_2)
+z_values_EN_election_2 <- summary_multi_EN_election_2$coefficients / summary_multi_EN_election_2$standard.errors
+p_values_EN_election_2 <- 2 * (1 - pnorm(abs(z_values_EN_election_2)))
+print(p_values_EN_election_2)
+
+## Tsai
+
+GPT_EN$election3 <- ifelse(GPT_EN$election == 3, 1, 0)
+multi_EN_election_3 <- multinom(election3 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_EN)
+coefficients_multi_EN_election_3 <- summary(multi_EN_election_3)$coefficients
+
+summary_multi_EN_election_3 <- summary(multi_EN_election_3)
+z_values_EN_election_3 <- summary_multi_EN_election_3$coefficients / summary_multi_EN_election_3$standard.errors
+p_values_EN_election_3 <- 2 * (1 - pnorm(abs(z_values_EN_election_3)))
+print(p_values_EN_election_3)
+
+## result
+
+result_TSCS_gpt <- data.frame(
+  Variable = variable_names,
+  Coefficient_Soong = coefficients_multi_EN_election_1,
+  Coefficient_Han = coefficients_multi_EN_election_2,
+  Coefficient_Tsai = coefficients_multi_EN_election_3
+)
+
+# English
+
+## Soong
+
+GPT_EN$category1 <- ifelse(GPT_EN$category == 1, 1, 0)
+multi_EN_category_1 <- multinom(category1 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_EN)
+coefficients_multi_EN_category_1 <- summary(multi_EN_category_1)$coefficients
+
+summary_multi_EN_category_1 <- summary(multi_EN_category_1)
+z_values_EN_category_1 <- summary_multi_EN_category_1$coefficients / summary_multi_EN_category_1$standard.errors
+p_values_EN_category_1 <- 2 * (1 - pnorm(abs(z_values_EN_category_1)))
+print(p_values_EN_category_1)
+
+## Han
+
+GPT_EN$category2 <- ifelse(GPT_EN$category == 2, 1, 0)
+multi_EN_category_2 <- multinom(category2 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_EN)
+coefficients_multi_EN_category_2 <- summary(multi_EN_category_2)$coefficients
+
+summary_multi_EN_category_2 <- summary(multi_EN_category_2)
+z_values_EN_category_2 <- summary_multi_EN_category_2$coefficients / summary_multi_EN_category_2$standard.errors
+p_values_EN_category_2 <- 2 * (1 - pnorm(abs(z_values_EN_category_2)))
+
+## Tsai
+
+GPT_EN$category3 <- ifelse(GPT_EN$category == 3, 1, 0)
+multi_EN_category_3 <- multinom(category3 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_EN)
+coefficients_multi_EN_category_3 <- summary(multi_EN_category_3)$coefficients
+
+summary_multi_EN_category_3 <- summary(multi_EN_category_3)
+z_values_EN_category_3 <- summary_multi_EN_category_3$coefficients / summary_multi_EN_category_3$standard.errors
+p_values_EN_category_3 <- 2 * (1 - pnorm(abs(z_values_EN_category_3)))
+print(p_values_EN_category_3)
+
+## result
+
+result_EN_gpt <- data.frame(
+  Variable = variable_names,
+  Coefficient_Soong = coefficients_multi_EN_category_1,
+  Coefficient_Han = coefficients_multi_EN_category_2,
+  Coefficient_Tsai = coefficients_multi_EN_category_3
+)
+
+# Mainland Chinese
+
+## Soong
+
+GPT_CN$category1 <- ifelse(GPT_CN$category_cn == 1, 1, 0)
+multi_CN_category_1 <- multinom(category1 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_CN)
+coefficients_multi_CN_category_1 <- summary(multi_CN_category_1)$coefficients
+
+summary_multi_CN_category_1 <- summary(multi_CN_category_1)
+z_values_CN_category_1 <- summary_multi_CN_category_1$coefficients / summary_multi_CN_category_1$standard.errors
+p_values_CN_category_1 <- 2 * (1 - pnorm(abs(z_values_CN_category_1)))
+print(p_values_CN_category_1)
+
+## Han
+
+GPT_CN$category2 <- ifelse(GPT_CN$category_cn == 2, 1, 0)
+multi_CN_category_2 <- multinom(category2 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_CN)
+coefficients_multi_CN_category_2 <- summary(multi_CN_category_2)$coefficients
+
+summary_multi_CN_category_2 <- summary(multi_CN_category_2)
+z_values_CN_category_2 <- summary_multi_CN_category_2$coefficients / summary_multi_CN_category_2$standard.errors
+p_values_CN_category_2 <- 2 * (1 - pnorm(abs(z_values_CN_category_2)))
+print(p_values_CN_category_2)
+
+## Tsai
+
+GPT_CN$category3 <- ifelse(GPT_CN$category_cn == 3, 1, 0)
+multi_CN_category_3 <- multinom(category3 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_CN)
+coefficients_multi_CN_category_3 <- summary(multi_CN_category_3)$coefficients
+
+summary_multi_CN_category_3 <- summary(multi_CN_category_3)
+z_values_CN_category_3 <- summary_multi_CN_category_3$coefficients / summary_multi_CN_category_3$standard.errors
+p_values_CN_category_3 <- 2 * (1 - pnorm(abs(z_values_CN_category_3)))
+print(p_values_CN_category_3)
+
+## result
+
+result_CN_gpt <- data.frame(
+  Variable = variable_names,
+  Coefficient_Soong = coefficients_multi_CN_category_1,
+  Coefficient_Han = coefficients_multi_CN_category_2,
+  Coefficient_Tsai = coefficients_multi_CN_category_3
+)
+
+# Taiwan Chinese
+
+## Soong
+
+GPT_TW_05$category1 <- ifelse(GPT_TW_05$category_tw_05 == 1, 1, 0)
+multi_TW_05_category_1 <- multinom(category1 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_TW_05)
+coefficients_multi_TW_05_category_1 <- summary(multi_TW_05_category_1)$coefficients
+
+summary_multi_TW_05_category_1 <- summary(multi_TW_05_category_1)
+z_values_TW_05_category_1 <- summary_multi_TW_05_category_1$coefficients / summary_multi_TW_05_category_1$standard.errors
+p_values_TW_05_category_1 <- 2 * (1 - pnorm(abs(z_values_TW_05_category_1)))
+print(p_values_TW_05_category_1)
+
+## Han
+
+GPT_TW_05$category2 <- ifelse(GPT_TW_05$category_tw_05 == 2, 1, 0)
+multi_TW_05_category_2 <- multinom(category2 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_TW_05)
+coefficients_multi_TW_05_category_2 <- summary(multi_TW_05_category_2)$coefficients
+
+summary_multi_TW_05_category_2 <- summary(multi_TW_05_category_2)
+z_values_TW_05_category_2 <- summary_multi_TW_05_category_2$coefficients / summary_multi_TW_05_category_2$standard.errors
+p_values_TW_05_category_2 <- 2 * (1 - pnorm(abs(z_values_TW_05_category_2)))
+print(p_values_TW_05_category_2)
+
+## Tsai
+
+GPT_TW_05$category3 <- ifelse(GPT_TW_05$category_tw_05 == 3, 1, 0)
+multi_TW_05_category_3 <- multinom(category3 ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_TW_05)
+coefficients_multi_TW_05_category_3 <- summary(multi_TW_05_category_3)$coefficients
+
+summary_multi_TW_05_category_3 <- summary(multi_TW_05_category_3)
+z_values_TW_05_category_3 <- summary_multi_TW_05_category_3$coefficients / summary_multi_TW_05_category_3$standard.errors
+p_values_TW_05_category_3 <- 2 * (1 - pnorm(abs(z_values_TW_05_category_3)))
+print(p_values_TW_05_category_3)
+
+## result
+
+result_TW_gpt <- data.frame(
+  Variable = variable_names,
+  Coefficient_Soong = coefficients_multi_TW_05_category_1,
+  Coefficient_Han = coefficients_multi_TW_05_category_2,
+  Coefficient_Tsai = coefficients_multi_TW_05_category_3
+)
+
+# result in language
+
+wb1 <- createWorkbook()
+addWorksheet(wb1, "TSCS")
+writeData(wb1, sheet = "TSCS", result_TSCS_gpt)
+addWorksheet(wb1, "EN")
+writeData(wb1, sheet = "EN", result_EN_gpt)
+addWorksheet(wb1, "CN")
+writeData(wb1, sheet = "CN", result_CN_gpt)
+addWorksheet(wb1, "TW")
+writeData(wb1, sheet = "TW", result_TW_gpt)
+saveWorkbook(wb1, file = "results_language_TSCS_gpt.xlsx", overwrite = TRUE)
+
+# result in candidate
+
+result_Soong_gpt <- data.frame(
+  Variable = variable_names,
+  Coefficient_TSCS = coefficients_multi_EN_election_1,
+  Coefficient_EN = coefficients_multi_EN_category_1,
+  Coefficient_CN = coefficients_multi_CN_category_1,
+  Coefficient_TW = coefficients_multi_TW_05_category_1
+)
+
+result_Soong_gpt <- data.frame(
+  Variable = variable_names,
+  Coefficient_TSCS = coefficients_multi_EN_election_2,
+  Coefficient_EN = coefficients_multi_EN_category_2,
+  Coefficient_CN = coefficients_multi_CN_category_2,
+  Coefficient_TW = coefficients_multi_TW_05_category_2
+)
+
+result_Soong_gpt <- data.frame(
+  Variable = variable_names,
+  Coefficient_TSCS = coefficients_multi_EN_election_3,
+  Coefficient_EN = coefficients_multi_EN_category_3,
+  Coefficient_CN = coefficients_multi_CN_category_3,
+  Coefficient_TW = coefficients_multi_TW_05_category_3
+)
+
+wb <- createWorkbook()
+addWorksheet(wb, "Soong")
+writeData(wb, sheet = "Soong", result_Soong_gpt)
+addWorksheet(wb, "Han")
+writeData(wb, sheet = "Han", result_Han_gpt)
+addWorksheet(wb, "Tsai")
+writeData(wb, sheet = "Tsai", result_Tsai_gpt)
+saveWorkbook(wb, file = "results_candidate_gpt.xlsx", overwrite = TRUE)
