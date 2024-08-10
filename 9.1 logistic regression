@@ -1,0 +1,133 @@
+library(nnet)
+library(margins)
+library(reshape2)
+library(dplyr)
+library(tidyr)
+
+# English
+
+GPT_EN$gender <- as.factor(GPT_EN$gender)
+GPT_EN$gender <- relevel(GPT_EN$gender, ref = "male.")
+
+GPT_EN$father <- as.factor(GPT_EN$father)
+GPT_EN$father <- relevel(GPT_EN$father, ref = "a Taiwanese from Fujian Minnan")
+
+GPT_EN$mother <- as.factor(GPT_EN$mother)
+GPT_EN$mother <- relevel(GPT_EN$mother, ref = "a Taiwanese from Fujian Minnan.")
+
+GPT_EN$identification <- as.factor(GPT_EN$identification)
+GPT_EN$identification <- relevel(GPT_EN$identification, ref = "Taiwanese")
+
+GPT_EN$relationship <- as.factor(GPT_EN$relationship)
+GPT_EN$relationship <- relevel(GPT_EN$relationship, ref = "suggest to unify with Mainland China.")
+
+GPT_EN$party <- as.factor(GPT_EN$party)
+GPT_EN$party <- relevel(GPT_EN$party, ref = "the Kuomintang / Chinese Nationalist Party.")
+
+GPT_EN$employment <- as.factor(GPT_EN$employment)
+GPT_EN$employment <- relevel(GPT_EN$employment, ref = "working")
+
+GPT_EN$vote <- as.factor(GPT_EN$vote)
+GPT_EN$vote <- relevel(GPT_EN$vote, ref = "Soong Chu-yu")
+
+## logistic regression
+
+GPT_EN$match <- ifelse(GPT_EN$election == GPT_EN$category, 1, 0)
+log_EN_match <- glm(match ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_EN, family = binomial)
+
+summary_log_EN_match <- summary(log_EN_match)
+coefficients_log_EN_match <- summary_log_EN_match$coefficients
+result_log_EN_match <- data.frame(
+  Variable = rownames(coefficients_log_EN_match),
+  Coefficient = coefficients_log_EN_match[, "Estimate"],
+  P_Value = coefficients_log_EN_match[, "Pr(>|z|)"]
+)
+
+# Mainland Chinese
+
+GPT_CN$gender <- as.factor(GPT_CN$gender)
+GPT_CN$gender <- relevel(GPT_CN$gender, ref = "male.")
+
+GPT_CN$father <- as.factor(GPT_CN$father)
+GPT_CN$father <- relevel(GPT_CN$father, ref = "a Taiwanese from Fujian Minnan")
+
+GPT_CN$mother <- as.factor(GPT_CN$mother)
+GPT_CN$mother <- relevel(GPT_CN$mother, ref = "a Taiwanese from Fujian Minnan.")
+
+GPT_CN$identification <- as.factor(GPT_CN$identification)
+GPT_CN$identification <- relevel(GPT_CN$identification, ref = "Taiwanese")
+
+GPT_CN$relationship <- as.factor(GPT_CN$relationship)
+GPT_CN$relationship <- relevel(GPT_CN$relationship, ref = "suggest to unify with Mainland China.")
+
+GPT_CN$party <- as.factor(GPT_CN$party)
+GPT_CN$party <- relevel(GPT_CN$party, ref = "the Kuomintang / Chinese Nationalist Party.")
+
+GPT_CN$employment <- as.factor(GPT_CN$employment)
+GPT_CN$employment <- relevel(GPT_CN$employment, ref = "working")
+
+GPT_CN$vote <- as.factor(GPT_CN$vote)
+GPT_CN$vote <- relevel(GPT_CN$vote, ref = "Soong Chu-yu")
+
+## logistic regression
+
+GPT_CN$match <- ifelse(GPT_CN$election == GPT_CN$category_cn, 1, 0)
+log_CN_match <- glm(match ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_CN, family = binomial)
+
+summary_log_CN_match <- summary(log_CN_match)
+coefficients_log_CN_match <- summary_log_CN_match$coefficients
+result_log_CN_match <- data.frame(
+  Variable = rownames(coefficients_log_CN_match),
+  Coefficient = coefficients_log_CN_match[, "Estimate"],
+  P_Value = coefficients_log_CN_match[, "Pr(>|z|)"]
+)
+
+# Taiwan Chinese
+
+GPT_TW_05$gender <- as.factor(GPT_TW_05$gender)
+GPT_TW_05$gender <- relevel(GPT_TW_05$gender, ref = "male.")
+
+GPT_TW_05$father <- as.factor(GPT_TW_05$father)
+GPT_TW_05$father <- relevel(GPT_TW_05$father, ref = "a Taiwanese from Fujian Minnan")
+
+GPT_TW_05$mother <- as.factor(GPT_TW_05$mother)
+GPT_TW_05$mother <- relevel(GPT_TW_05$mother, ref = "a Taiwanese from Fujian Minnan.")
+
+GPT_TW_05$identification <- as.factor(GPT_TW_05$identification)
+GPT_TW_05$identification <- relevel(GPT_TW_05$identification, ref = "Taiwanese")
+
+GPT_TW_05$relationship <- as.factor(GPT_TW_05$relationship)
+GPT_TW_05$relationship <- relevel(GPT_TW_05$relationship, ref = "suggest to unify with Mainland China.")
+
+GPT_TW_05$party <- as.factor(GPT_TW_05$party)
+GPT_TW_05$party <- relevel(GPT_TW_05$party, ref = "the Kuomintang / Chinese Nationalist Party.")
+
+GPT_TW_05$employment <- as.factor(GPT_TW_05$employment)
+GPT_TW_05$employment <- relevel(GPT_TW_05$employment, ref = "working")
+
+GPT_TW_05$vote <- as.factor(GPT_TW_05$vote)
+GPT_TW_05$vote <- relevel(GPT_TW_05$vote, ref = "Soong Chu-yu")
+
+## logistic regression
+
+GPT_TW_05$match <- ifelse(GPT_TW_05$election == GPT_TW_05$category_tw_05, 1, 0)
+log_TW_05_match <- glm(match ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social, data = GPT_TW_05, family = binomial)
+
+summary_log_TW_05_match <- summary(log_TW_05_match)
+coefficients_log_TW_05_match <- summary_log_TW_05_match$coefficients
+result_log_TW_05_match <- data.frame(
+  Variable = rownames(coefficients_log_TW_05_match),
+  Coefficient = coefficients_log_TW_05_match[, "Estimate"],
+  P_Value = coefficients_log_TW_05_match[, "Pr(>|z|)"]
+)
+
+# result
+
+wa <- createWorkbook()
+addWorksheet(wa, "EN")
+writeData(wa, sheet = "EN", result_log_EN_match)
+addWorksheet(wa, "CN")
+writeData(wa, sheet = "CN", result_log_CN_match)
+addWorksheet(wa, "TW")
+writeData(wa, sheet = "TW", result_log_TW_05_match)
+saveWorkbook(wa, file = "results_logistic_Regression.xlsx", overwrite = TRUE)
