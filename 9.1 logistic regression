@@ -3,6 +3,7 @@ library(margins)
 library(reshape2)
 library(dplyr)
 library(tidyr)
+library(openxlsx)
 
 # English
 
@@ -111,7 +112,7 @@ GPT_TW_05$vote <- relevel(GPT_TW_05$vote, ref = "Soong Chu-yu")
 ## logistic regression
 
 GPT_TW_05$match <- ifelse(GPT_TW_05$election == GPT_TW_05$category_tw_05, 1, 0)
-log_TW_05_match <- glm(match ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social, data = GPT_TW_05, family = binomial)
+log_TW_05_match <- glm(match ~ gender + age + residence + father + mother + education + religion + democracy + identification + relationship + party + employment + social + vote, data = GPT_TW_05, family = binomial)
 
 summary_log_TW_05_match <- summary(log_TW_05_match)
 coefficients_log_TW_05_match <- summary_log_TW_05_match$coefficients
