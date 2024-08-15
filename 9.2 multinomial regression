@@ -200,7 +200,7 @@ result_Soong_gpt <- data.frame(
   Coefficient_TW = coefficients_multi_TW_05_category_1
 )
 
-result_Soong_gpt <- data.frame(
+result_Han_gpt <- data.frame(
   Variable = variable_names,
   Coefficient_TSCS = coefficients_multi_EN_election_2,
   Coefficient_EN = coefficients_multi_EN_category_2,
@@ -208,7 +208,7 @@ result_Soong_gpt <- data.frame(
   Coefficient_TW = coefficients_multi_TW_05_category_2
 )
 
-result_Soong_gpt <- data.frame(
+result_Tsai_gpt <- data.frame(
   Variable = variable_names,
   Coefficient_TSCS = coefficients_multi_EN_election_3,
   Coefficient_EN = coefficients_multi_EN_category_3,
